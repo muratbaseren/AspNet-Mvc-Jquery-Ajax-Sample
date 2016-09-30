@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index3";
+}
+
+<h2>Index3</h2>
+
+<div>
+    <input type="text" id="txtDeger" placeholder="Değer giriniz.." />
+    <button id="btnSendData" class="btn btn-primary">Gönder</button>
+</div>
+<hr />
+<button id="btnVeriYukle" class="btn btn-success">Verileri Yükle</button>
+<hr />
+<div id="loading" class="alert alert-warning" style="display:none;">yükleniyor..</div>
+<ul id="sonuc" class="list-group"></ul>
+
+<script>
+
+    $(function () {
+
+        $("#btnVeriYukle").click(function () {
+
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetData",
+                beforeSend: function () {
+                    $("#loading").show(300);
+                }
+            }).done(function (d) {
+                $("#sonuc").html(d);
+            }).fail(function () {
+                alert("Hata oluştu..");
+            }).always(function () {
+                $("#loading").hide(300);
+            });
+
+        });
+
+
+        $("#btnSendData").click(function () {
+
+            var deger = $("#txtDeger").val();
+
+            $.ajax({
+                method: "POST",
+                data: { veri: deger },
+                url: "/Home/GetData2",
+                beforeSend: function () {
+                    $("#loading").show(300);
+                }
+            }).done(function (d) {
+                $("#sonuc").html(d);
+
+            }).fail(function () {
+                alert("Hata oluştu..");
+
+            }).always(function () {
+                $("#loading").hide(300);
+            });
+
+        });
+
+    });
+
+</script>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<button id="btnVeriYukle" class="btn btn-success">Verileri Yükle</button>
+<hr />
+<div id="loading" class="alert alert-warning" style="display:none;">yükleniyor..</div>
+<ul id="sonuc" class="list-group">
+
+</ul>
+
+<script>
+
+    $(function () {
+
+        $("#btnVeriYukle").click(function () {
+
+            $("#loading").show(300);
+
+            $("#sonuc").load("/Home/GetData", function () {
+                $("#loading").hide(300);
+            });
+
+        });
+
+    });
+
+</script>

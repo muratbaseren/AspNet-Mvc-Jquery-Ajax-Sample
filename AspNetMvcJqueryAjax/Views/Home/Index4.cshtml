@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index4";
+}
+
+<h2>Index4</h2>
+
+<hr />
+<button id="btnVeriYukle" class="btn btn-success">Verileri Yükle</button>
+<hr />
+<div id="loading" class="alert alert-warning" style="display:none;">yükleniyor..</div>
+<ul id="sonuc" class="list-group"></ul>
+
+<script>
+
+
+    $(function () {
+
+        $("#btnVeriYukle").click(function () {
+
+            //$.ajax({
+            //    method: "GET",
+            //    url: "/Home/GetData3",
+            //    beforeSend: function () {
+            //        $("#loading").show(300);
+            //    }
+            //}).done(function (d) {
+            //    console.log(d);
+            //    var ul = $("#sonuc");
+            //
+            //    for (var i in d) {
+            //        var item = d[i];
+            //        var li = $("<li class='list-group-item'></li>");
+            //        li.html(item);
+            //        ul.append(li);
+            //    }
+            //}).fail(function () {
+            //    alert("Hata oluştu..");
+            //}).always(function () {
+            //    $("#loading").hide(300);
+            //});
+
+
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetData4",
+                data: { veri: "asp.net mvc eğitimi" },
+                beforeSend: function () {
+                    $("#loading").show(300);
+                }
+            }).done(function (d) {
+                console.log(d);
+
+                var ul = $("#sonuc");
+                var li = $("<li class='list-group-item'></li>");
+                li.html(d.veri);
+
+                ul.append(li);
+
+            }).fail(function () {
+                alert("Hata oluştu..");
+            }).always(function () {
+                $("#loading").hide(300);
+            });
+
+
+        });
+
+    });
+
+</script>

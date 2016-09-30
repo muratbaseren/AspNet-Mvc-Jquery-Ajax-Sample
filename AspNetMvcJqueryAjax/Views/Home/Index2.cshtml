@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+
+<button id="btnVeriYukle" class="btn btn-success">Verileri Yükle</button>
+<hr />
+<div id="loading" class="alert alert-warning" style="display:none;">yükleniyor..</div>
+<ul id="sonuc" class="list-group"></ul>
+
+<script>
+
+    $(function () {
+
+        $("#btnVeriYukle").click(function () {
+
+            $("#loading").show(300);
+
+            //$.get("/Home/GetData", function (d) {
+            //    $("#sonuc").html(d);
+            //    $("#loading").hide(300);
+            //});
+
+            $.get("/Home/GetData2", { veri: "asp.net mvc eğitimi" }, function (d) {
+
+                console.log(d);
+
+                $("#sonuc").html(d);
+                $("#loading").hide(300);
+            });
+
+        });
+
+    });
+
+</script>
